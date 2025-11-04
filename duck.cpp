@@ -1,22 +1,53 @@
 #include "duck.h"
 
 /* TODO */
-void Duck::performFly(){}
-/* TODO */
-void Duck::performQuack(){}
-/* TODO */
-void Duck::setFlyBehavior(FlyBehavior* fb){}
-/* TODO */
-void Duck::setQuackBehavior(QuackBehavior* qb){}
-
+void Duck::performFly(){
+    flyBehavior->fly();
+}
 
 /* TODO */
-MallardDuck::MallardDuck() {}
+void Duck::performQuack(){
+    quackBehavior->quack();
+}
+
 /* TODO */
-RedheadDuck::RedheadDuck() {}
+void Duck::setFlyBehavior(FlyBehavior* fb){
+    if(flyBehavior){
+        delete flyBehavior;
+    }
+    flyBehavior = fb;
+}
+
 /* TODO */
-RubberDuck::RubberDuck() {}
+void Duck::setQuackBehavior(QuackBehavior* qb){
+    if(quackBehavior){
+        delete quackBehavior;
+    }
+    quackBehavior = qb;
+}
+
 /* TODO */
-DecoyDuck::DecoyDuck() {}
+MallardDuck::MallardDuck() {
+    setFlyBehavior(new FlyWithWings());
+    setQuackBehavior(new Quack());
+}
 /* TODO */
-ModelDuck::ModelDuck() {}
+RedheadDuck::RedheadDuck() {
+    setFlyBehavior(new FlyWithWings());
+    setQuackBehavior(new Quack());
+}
+/* TODO */
+RubberDuck::RubberDuck() {
+    setFlyBehavior(new FlyNoWay());
+    setQuackBehavior(new Squeak()); 
+}
+/* TODO */
+DecoyDuck::DecoyDuck() {
+    setFlyBehavior(new FlyNoWay());
+    setQuackBehavior(new MuteQuack());
+}
+/* TODO */
+ModelDuck::ModelDuck() {
+    setFlyBehavior(new FlyNoWay());
+    setQuackBehavior(new MuteQuack());
+}
